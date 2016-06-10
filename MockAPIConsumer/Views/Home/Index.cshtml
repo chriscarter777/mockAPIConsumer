@@ -1,0 +1,14 @@
+﻿@using MockAPIConsumer.Models
+@model IEnumerable<MockAPIConsumer.Models.Place>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Mock API Contents</h2>
+@foreach (Place place in Model)
+{
+    @Html.Partial("_PlaceSummary", place)
+}
+
+@Html.ActionLink("Add", "Add", null, new { @class="btn btn-success pull-right"})

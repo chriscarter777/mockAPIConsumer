@@ -1,0 +1,15 @@
+﻿@using MockAPIConsumer.Models
+@model IEnumerable<MockAPIConsumer.Models.Place>
+
+@{
+    ViewBag.Title = "Index2";
+}
+
+<h2>Index2</h2>
+@foreach(Place place in Model)
+{
+    @place.Id
+    @place.Name
+    @place.Population
+}
+

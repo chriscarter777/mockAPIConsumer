@@ -1,0 +1,18 @@
+﻿@model MockAPIConsumer.Models.Place
+
+<div class="well">
+    <div class="well">
+        <h3>
+            <span class="label label-default">@Model.Id</span>
+            <strong>@Model.Name</strong>
+            <span class="pull-right">population @Model.Population</span>
+        </h3>
+    </div>
+
+    <div class="btn btn-default btn-xs">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+    </div>
+    <div class="btn btn-default btn-xs">
+        @Html.ActionLink("Delete", "Delete", new { id = Model.Id })
+    </div>
+</div>
