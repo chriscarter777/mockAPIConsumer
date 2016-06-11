@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Ninject;
 using System.Web.Mvc;
+using MockAPIConsumer.Models;
 
 namespace MockAPIConsumer.Interface
 {
@@ -29,7 +30,7 @@ namespace MockAPIConsumer.Interface
 
         private void AddBindings()
         {
-            kernel.Bind<IApiRepository>().To<WebClientRepository>();
+            kernel.Bind<IApiRepository>().To<HttpClientJsonRepository>();
         }
     }
 }

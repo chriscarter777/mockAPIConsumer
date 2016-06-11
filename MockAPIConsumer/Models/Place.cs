@@ -12,7 +12,6 @@ namespace MockAPIConsumer.Models
     public class Place
     {
         [DataMember]
-        [Editable(false)]
         public int Id { get; set; }
         [DataMember]
         public string Name { get; set; }

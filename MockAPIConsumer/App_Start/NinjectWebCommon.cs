@@ -5,9 +5,9 @@ namespace MockAPIConsumer.App_Start
 {
     using System;
     using System.Web;
-
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
+    using MockAPIConsumer.Models;
+    using MockAPIConsumer.Interface;
     using Ninject;
     using Ninject.Web.Common;
 

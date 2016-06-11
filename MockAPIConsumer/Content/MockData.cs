@@ -6,7 +6,7 @@ using MockAPIConsumer.Models;
 
 namespace MockAPIConsumer.Content
 {
-    public class Data
+    public class MockData
     {
         public static List<Place> places = new List<Place>
             {

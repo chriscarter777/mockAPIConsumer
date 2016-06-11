@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using MockAPIConsumer.Models;
-using MockAPIConsumer.Content;
-using System.Runtime.Serialization;
-using System.IO;
-using Ninject;
 using MockAPIConsumer.Interface;
 
 namespace MockAPIConsumer.Controllers
@@ -22,73 +13,72 @@ namespace MockAPIConsumer.Controllers
             this.repo = myApiConsumer;
         }
 
-        private Uri resource = new Uri("http://places.cscarter.net/api/web");
+
 
         public ViewResult Index()
         {
-            //var client = new WebClient();
-            //var response = client.DownloadString(resource);
-            
-            //DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Place));
-            //using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(response)))
-            //{
-                //var places = (Place)serializer.ReadObject(ms);
-            //}
-            return View("Index", Data.places);
-        }
-
-        public ViewResult GetJson()
-        {
-            string lookImJson = "some JSON object";
-            return View("JsonResponse", lookImJson);
-        }
-
-        public ViewResult GetXml()
-        {
-            string lookImXml = "some XML object";
-            return View("XmlResponse", lookImXml);
+            IEnumerable<Place> places = repo.GetAll();
+            return View("Index", places);
         }
 
         public ViewResult Dashboard()
         {
-            return View();
+            IEnumerable<Place> places = repo.GetAll();
+            foreach(Place place in places)
+            {
+                ViewBag.Graph1 += "<rect x=\"" + ((place.Id * 100) + 50) + "\" y=\"" + (350 - (place.Population / 10000)) + "\" width=\"50\" height=\"" + (place.Population / 10000) + "\" style=\"fill:#127CC1; stroke-width:1; stroke:rgb(0, 0, 150)\" />";
+                ViewBag.Graph1 += "<text fill=\"#663300\" font-size=\"16\" font-family=\"Verdana\" x=\"" + ((place.Id * 100) + 50) + "\" y=\"380\"> " + place.Name + "</text>";
+            }
+            return View(places);
         }
 
-        public ViewResult Edit(int id)
+        public ViewResult Raw()
         {
-            //get the record
-            //add the record to the View return below
-            return View("Edit", Data.places[id]);
+            ViewBag.Response = repo.GetAllRaw();
+            return View("Raw");
         }
 
-        [HttpPost]
-        public ViewResult Edit(Place place)
+
+        public ViewResult GetOne(int id = 1)
         {
-            //put the record
-            Data.places[place.Id] = place;
-            return View("Index", Data.places);
+            Place place = repo.Get(id);
+            return View("GetOne", place);
         }
 
-        public ViewResult Delete(int id)
-        {
-            //get the record
-            //delete the record
-            Data.places.RemoveAt(id);
-            return View("Index", Data.places);
-        }
 
-        public ViewResult Add()
+
+        public ViewResult Add(int id)
         {
-            int newId = Data.places.Count;
-            return View("Add", new Place() { Id = newId, Name="put name here", Population=-1 });
+            return View("Add", new Place() { Id = id });
         }
 
         [HttpPost]
         public ViewResult Add(Place place)
         {
-            //post the record
-            Data.places.Add(place);
-            return View("Index", Data.places);
+            repo.Post(place);
+            return View("Index", repo.GetAll());
         }
+
+
+
+        public ViewResult Delete(int id)
+        {
+            repo.Delete(id);
+            return View("Index", repo.GetAll());
+        }
+
+
+        public ViewResult Edit(int id)
+        {
+            return View("Edit", repo.Get(id));
+        }
+
+        [HttpPost]
+        public ViewResult Edit(Place place)
+        {
+            repo.Put(place);
+            return View("Index", repo.GetAll());
+        }
+
     }
 }

@@ -11,4 +11,4 @@
     @Html.Partial("_PlaceSummary", place)
 }
 
-@Html.ActionLink("Add", "Add", null, new { @class="btn btn-success pull-right"})
+@Html.ActionLink("Add", "Add", new { id = Model.Count() }, new { @class="btn btn-success pull-right"})

@@ -1,8 +1,41 @@
-﻿@model MockAPIConsumer.Models.Place
+﻿@using MockAPIConsumer.Models
+@model IEnumerable<Place>
 
 @{
     ViewBag.Title = "Dashboard";
 }
 
 <h2>Dashboard</h2>
+
+<div class="panel-body">
+    <table class="table table-striped table-condensed table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Population</th>
+        </tr>
+            @foreach (Place place in Model)
+            {
+                <tr>
+                    <th>@place.Id</th>
+                    <th>@place.Name</th>
+                    <th>@place.Population</th>
+                </tr>
+            }
+        </tr>
+    </table>
+</div>
+<svg height="450" width="800">
+    <image xlink:href="~/Content/Intel-logo.svg" width="50" height="80" x="700" y="10"/>
+    <line x1="20" y1="0" x2="20" y2="400" stroke="#AAAAAA" stroke-width="1" />
+    <line x1="0" y1="350" x2="800" y2="350" stroke="#AAAAAA" stroke-width="1" />
+    <line x1="0" y1="300" x2="20" y2="300" stroke="#AAAAAA" stroke-width="1" />
+    <line x1="0" y1="250" x2="20" y2="250" stroke="#AAAAAA" stroke-width="1" />
+    <line x1="0" y1="200" x2="20" y2="200" stroke="#AAAAAA" stroke-width="1" />
+    <line x1="0" y1="150" x2="20" y2="150" stroke="#AAAAAA" stroke-width="1" />
+    <line x1="0" y1="100" x2="20" y2="100" stroke="#AAAAAA" stroke-width="1" />
+    <line x1="0" y1="50" x2="20" y2="50" stroke="#AAAAAA" stroke-width="1" />
+    <line x1="0" y1="0" x2="20" y2="0" stroke="#AAAAAA" stroke-width="1" />
+    @Html.Raw(ViewBag.Graph1)
+</svg>
 
