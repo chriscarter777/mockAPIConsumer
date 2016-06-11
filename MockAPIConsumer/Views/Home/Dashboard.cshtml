@@ -26,16 +26,16 @@
     </table>
 </div>
 <svg height="450" width="800">
-    <image xlink:href="~/Content/Intel-logo.svg" width="50" height="80" x="700" y="10"/>
+    @for (int y = 0; y < 400; y += 25)
+    {
+        <line x1="0" y1="@y" x2="20" y2="@y" stroke="#AAAAAA" stroke-width="1" />
+        <line x1="780" y1="@y" x2="800" y2="@y" stroke="#AAAAAA" stroke-width="1" />
+    }
     <line x1="20" y1="0" x2="20" y2="400" stroke="#AAAAAA" stroke-width="1" />
-    <line x1="0" y1="350" x2="800" y2="350" stroke="#AAAAAA" stroke-width="1" />
-    <line x1="0" y1="300" x2="20" y2="300" stroke="#AAAAAA" stroke-width="1" />
-    <line x1="0" y1="250" x2="20" y2="250" stroke="#AAAAAA" stroke-width="1" />
-    <line x1="0" y1="200" x2="20" y2="200" stroke="#AAAAAA" stroke-width="1" />
-    <line x1="0" y1="150" x2="20" y2="150" stroke="#AAAAAA" stroke-width="1" />
-    <line x1="0" y1="100" x2="20" y2="100" stroke="#AAAAAA" stroke-width="1" />
-    <line x1="0" y1="50" x2="20" y2="50" stroke="#AAAAAA" stroke-width="1" />
-    <line x1="0" y1="0" x2="20" y2="0" stroke="#AAAAAA" stroke-width="1" />
+    <line x1="780" y1="0" x2="780" y2="400" stroke="#AAAAAA" stroke-width="1" />
+    <line x1="0" y1="400" x2="800" y2="400" stroke="#AAAAAA" stroke-width="1" />
+    <text fill="#663300" font-size="16" font-family="Verdana" x="230" y="440">Population Inventory as of @DateTime.Today.ToShortDateString()</text>";
+    <image xlink:href="~/Content/Intel-logo.svg" width="15%" height="15%" x="630" y="10" />
     @Html.Raw(ViewBag.Graph1)
 </svg>
 
