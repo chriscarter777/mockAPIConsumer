@@ -26,8 +26,8 @@ namespace MockAPIConsumer.Controllers
             IEnumerable<Place> places = repo.GetAll();
             foreach(Place place in places)
             {
-                ViewBag.Graph1 += "<rect x=\"" + ((place.Id * 100) + 50) + "\" y=\"" + (400 - (place.Population / 10000)) + "\" width=\"50\" height=\"" + (place.Population / 10000) + "\" style=\"fill:#127CC1; stroke-width:1; stroke:rgb(0, 0, 80)\" />";
-                ViewBag.Graph1 += "<text fill=\"#663300\" font-size=\"16\" font-family=\"Verdana\" x=\"" + ((place.Id * 100) + 50) + "\" y=\"420\"> " + place.Name + "</text>";
+                ViewBag.Graph1 += "<rect x=\"" + ((place.Id * 100) - 50) + "\" y=\"" + (400 - (place.Population / 10000)) + "\" width=\"50\" height=\"" + (place.Population / 10000) + "\" style=\"fill:#127CC1; stroke-width:1; stroke:rgb(0, 0, 80)\" />";
+                ViewBag.Graph1 += "<text fill=\"#663300\" font-size=\"16\" font-family=\"Verdana\" x=\"" + ((place.Id * 100) - 50) + "\" y=\"420\"> " + place.Name + "</text>";
             }
             return View(places);
         }

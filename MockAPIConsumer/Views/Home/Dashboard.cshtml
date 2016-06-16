@@ -25,16 +25,16 @@
         </tr>
     </table>
 </div>
-<svg height="450" width="800">
+<svg height="450" width="1000">
     @for (int y = 0; y < 400; y += 25)
     {
         <line x1="0" y1="@y" x2="20" y2="@y" stroke="#AAAAAA" stroke-width="1" />
-        <line x1="780" y1="@y" x2="800" y2="@y" stroke="#AAAAAA" stroke-width="1" />
+        <line x1="980" y1="@y" x2="1000" y2="@y" stroke="#AAAAAA" stroke-width="1" />
     }
     <line x1="20" y1="0" x2="20" y2="400" stroke="#AAAAAA" stroke-width="1" />
-    <line x1="780" y1="0" x2="780" y2="400" stroke="#AAAAAA" stroke-width="1" />
+    <line x1="980" y1="0" x2="980" y2="400" stroke="#AAAAAA" stroke-width="1" />
     <line x1="0" y1="400" x2="800" y2="400" stroke="#AAAAAA" stroke-width="1" />
-    <text fill="#663300" font-size="16" font-family="Verdana" x="230" y="440">Population Inventory as of @DateTime.Today.ToShortDateString()</text>";
+    <text fill="#663300" font-size="16" font-family="Verdana" x="430" y="440">Population Inventory as of @DateTime.Today.ToShortDateString()</text>";
     <image xlink:href="~/Content/Intel-logo.svg" width="15%" height="15%" x="630" y="10" />
     @Html.Raw(ViewBag.Graph1)
 </svg>
